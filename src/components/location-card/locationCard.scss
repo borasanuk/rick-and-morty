@@ -1,0 +1,70 @@
+.ram-location-card {
+  display: flex;
+  align-items: center;
+  // flex-wrap: wrap;
+  // flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+
+  .ram-location-card-title {
+    flex: 0 0 300px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .ram-location-card-items {
+    display: flex;
+    flex: 1 0;
+    width: 100%;
+    gap: 10px;
+
+    .ram-location-card-item {
+      flex: 1 1;
+
+      .ram-location-card-item-name {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      .ram-location-card-item-data {
+        // white-space: nowrap;
+        // text-overflow: ellipsis;
+      }
+
+      &.sm {
+        flex: 0.7 0;
+      }
+
+      &.md {
+        flex: 1 0;
+      }
+
+      &.lg {
+        flex: 1.5 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .ram-location-card {
+    display: block;
+  }
+
+  .ram-location-card-title {
+    flex: 0 0 auto !important;
+    margin-bottom: 5px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .ram-location-card-title {
+    text-align: center;
+  }
+
+  .ram-location-card-items {
+    flex-direction: column;
+  }
+}
