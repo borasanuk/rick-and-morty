@@ -1,7 +1,10 @@
+@import "/src/common/common";
+
 .ram-navbar-outer-container {
   position: sticky;
   top: 20px;
   margin-bottom: 20px;
+  box-shadow: $ram-soft-shadow;
   z-index: 99;
 
   .ram-navbar-inner-container {
