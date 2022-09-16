@@ -58,7 +58,7 @@ const ResidentsPage = (props: ResidentsPageProps) => {
   return (
     <div className="ram-locations-page container">
       <div className="py-3"></div>
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center gap-2">
         <h4 className="m-0">Residents</h4>
         <Select
           value={selectedValue}
@@ -70,6 +70,7 @@ const ResidentsPage = (props: ResidentsPageProps) => {
           icon={<IconHomeSearch size={16} />}
           nothingFound="No options"
           rightSection={<></>}
+          rightSectionWidth={0}
           onSearchChange={(query) => handleSearch(query)}
           onChange={(value) => handleSelect(value)}
           data={searchResults.map((location) => {

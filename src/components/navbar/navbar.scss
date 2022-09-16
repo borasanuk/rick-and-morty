@@ -11,7 +11,7 @@
 
     .ram-navbar-start,
     .ram-navbar-end {
-      height: 100%;
+      height: 80px;
       object-fit: contain;
     }
   
@@ -21,7 +21,7 @@
 
     .ram-navbar {
       display: flex;
-      flex-wrap: wrap;
+      // flex-wrap: wrap;
       height: 80px;
       flex-grow: 1;
       justify-content: flex-end;
