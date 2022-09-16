@@ -1,18 +1,17 @@
 import { Alert, Badge, Loader, Text } from "@mantine/core";
 import { IconAlertCircle } from "@tabler/icons";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { RAMLocation } from "../../../services/ram-api/ram-types";
-import { fetchLocations } from "../../../services/ram-api/RAMDatabaseService";
-import LocationCard from "../../location-card/LocationCard";
-import "./locationsView.scss";
+import { RAMResident } from "../../../services/ram-api/ram-types";
+import { fetchResidents } from "../../../services/ram-api/RAMDatabaseService";
+import ResidentCard from "../../resident-card/ResidentCard";
+import "./residentsView.scss";
 
-const LocationsView = () => {
-  const [locations, setLocations] = useState<RAMLocation[]>([]);
+const InfiniteResidentsView = () => {
+  const [residents, setResidents] = useState<RAMResident[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
-  const [isUpdateRequested, setIsUpdateRequested] = useState(false);
+  const [isUpdateRequested, setIsUpdateRequested] = useState(true);
   const [isNextAvailable, setIsNextAvailable] = useState(true);
 
   const loaderRef = useRef(null);
@@ -34,14 +33,14 @@ const LocationsView = () => {
   useEffect(() => {
     if (isNextAvailable) {
       setIsLoading(true);
-      fetchLocations(page).then((response) => {
+      fetchResidents(page).then((response) => {
         setIsLoading(false);
         if (response === undefined) {
           setIsError(true);
         } else {
           setIsNextAvailable(response.info.next != null);
           if (response.results)
-            setLocations((prev) => [...prev, ...response.results]);
+            setResidents((prev) => [...prev, ...response.results]);
         }
       });
     }
@@ -59,7 +58,7 @@ const LocationsView = () => {
 
   return isError ? (
     <Alert icon={<IconAlertCircle size={16} />} title="Uh-oh!" color="red">
-      There was an error loading locations. Try refreshing the page, and if that
+      There was an error loading residents. Try refreshing the page, and if that
       doesn't work, send an angry tweet to{" "}
       <a
         href="https://twitter.com/rickandmortyapi"
@@ -71,34 +70,32 @@ const LocationsView = () => {
       .
     </Alert>
   ) : (
-    <div className="ram-locations-view">
-      {locations.map((location) => (
-        <Link
-          className="anchor-nostyle"
-          to="/residents"
-          state={{ location: location }}
-          key={location.id}
-        >
-          <LocationCard location={location} />
-        </Link>
-      ))}
-      <div ref={loaderRef} />
+    <>
+      <div className="ram-residents-view">
+        {residents.map((resident) => (
+          <ResidentCard resident={resident} key={resident.id} />
+        ))}
+        <div ref={loaderRef} />
+      </div>
+      <div className="py-2" />
       {isLoading && (
         <div className="d-flex align-items-center justify-content-center gap-2">
           <Loader color="green" size="sm" />
           <Text color="dimmed" weight={500}>
-            Loading locations
+            Loading residents
           </Text>
         </div>
       )}
       {!isNextAvailable && (
-        <Badge variant="light" className="mx-auto">
-          That's all of 'em.
-        </Badge>
+        <div className="d-flex">
+          <Badge variant="light" className="mx-auto">
+            That's all of 'em.
+          </Badge>
+        </div>
       )}
       <div className="py-2" />
-    </div>
+    </>
   );
 };
 
-export default LocationsView;
+export default InfiniteResidentsView;
