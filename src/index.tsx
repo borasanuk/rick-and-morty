@@ -11,12 +11,10 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
     <MantineProvider withNormalizeCSS>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<LocationsPage />} />
             <Route path="locations" element={<LocationsPage />} />
             <Route path="residents" element={<ResidentsPage />} />
           </Route>
@@ -24,5 +22,4 @@ root.render(
         </Routes>
       </BrowserRouter>
     </MantineProvider>
-  </React.StrictMode>
 );
