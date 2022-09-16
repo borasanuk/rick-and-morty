@@ -1,5 +1,5 @@
 import { Select } from "@mantine/core";
-import { IconSearch } from "@tabler/icons";
+import { IconHome, IconHome2, IconHomeSearch, IconSearch } from "@tabler/icons";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import FiniteResidentsView from "../../components/views/residents-view/FiniteResidentsView";
@@ -65,9 +65,9 @@ const ResidentsPage = (props: ResidentsPageProps) => {
           searchable
           clearable
           className="ms-auto"
-          placeholder="Location"
+          placeholder="Filter by location"
           radius="xl"
-          icon={<IconSearch size={14} />}
+          icon={<IconHomeSearch size={16} />}
           nothingFound="No options"
           rightSection={<></>}
           onSearchChange={(query) => handleSearch(query)}

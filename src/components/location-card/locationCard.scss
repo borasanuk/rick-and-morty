@@ -1,11 +1,20 @@
+@import "/src/common/common";
+
 .ram-location-card {
   display: flex;
   align-items: center;
   cursor: pointer;
   gap: 10px;
   padding: 10px;
-  background-color: #f0f0f0;
+  box-shadow: $ram-soft-shadow-green;
+  background-color: $ram-colors-green-3;
   border-radius: 10px;
+  border-left: 5px solid $ram-colors-green-1;
+  transition: background-color .1s ease-in-out;
+
+  &:hover {
+    background-color: $ram-colors-green-2;
+  }
 
   .ram-location-card-title {
     flex: 0 0 300px;
@@ -22,7 +31,8 @@
     .ram-location-card-item {
       flex: 1 1;
 
-      .ram-location-card-item-name {
+      .ram-location-card-item-label {
+        color: $ram-colors-green-1;
         font-size: 12px;
         font-weight: 500;
       }

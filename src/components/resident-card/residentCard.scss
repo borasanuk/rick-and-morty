@@ -1,10 +1,57 @@
+@import "/src/common/common";
+
 .ram-resident-card {
   display: flex;
-  flex-direction: column;
-  flex: 0 1 200px;
+  // flex-direction: column;
+  flex: 1 0 400px;
+  min-height: 200px;
+  max-width: 600px;
+  box-shadow: $ram-soft-shadow;
+  background-color: $ram-colors-green-3;
+  border-radius: 8px;
+  position: relative;
+  
   .ram-resident-card-img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
+    border-radius: 8px 0 0 8px;
+    // width: 100%;
+    height: 100%;
+    width: 200px;
+    object-fit: cover;
+  }
+
+  .ram-resident-card-status {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: rgba(#fff, 0.9);
+    border: none;
+  }
+
+  .ram-resident-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px 10px;
+
+
+    .ram-resident-card-title {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .ram-resident-card-item {
+      flex: 1 1;
+
+      .ram-resident-card-item-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: $ram-colors-green-1;
+      }
+
+      // .ram-resident-card-item-data {
+      //   // white-space: nowrap;
+      //   // text-overflow: ellipsis;
+      // }
+    }
   }
 }
