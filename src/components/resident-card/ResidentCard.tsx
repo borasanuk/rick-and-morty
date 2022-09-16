@@ -2,10 +2,17 @@ import { Badge } from "@mantine/core";
 import { RAMResident } from "../../services/ram-api/ram-types";
 import "./residentCard.scss";
 
-const statusIndicatorColors = {
-  Alive: "green",
-  Dead: "red",
-  unknown: "gray",
+const getStatusIndicatorColor = (status: string) => {
+  switch (status) {
+    case "Alive":
+      return "green";
+    case "Dead":
+      return "red";
+    case "unknown":
+      return "yellow";
+    default:
+      return "gray";
+  }
 };
 interface ResidentCardProps {
   resident: RAMResident;
@@ -17,9 +24,9 @@ const ResidentCard = ({ resident }: ResidentCardProps) => {
       <Badge
         className="ram-resident-card-status"
         variant="dot"
-        color={statusIndicatorColors["Alive"]}
+        color={getStatusIndicatorColor(resident.status)}
       >
-        Alive
+        {resident.status}
       </Badge>
     );
   };
@@ -35,18 +42,22 @@ const ResidentCard = ({ resident }: ResidentCardProps) => {
           <div className="ram-resident-card-item-data">{resident.species}</div>
           {/* <Badge color="green">{resident.species + " - " + resident.gender}</Badge> */}
         </div>
-        
-        {resident.type && <div className="ram-resident-card-item">
-          <div className="ram-resident-card-item-label">Type</div>
-          <div className="ram-resident-card-item-data">{resident.type}</div>
-        </div>}
+
+        {resident.type && (
+          <div className="ram-resident-card-item">
+            <div className="ram-resident-card-item-label">Type</div>
+            <div className="ram-resident-card-item-data">{resident.type}</div>
+          </div>
+        )}
         <div className="ram-resident-card-item">
           <div className="ram-resident-card-item-label">Gender</div>
           <div className="ram-resident-card-item-data">{resident.gender}</div>
         </div>
         <div className="ram-resident-card-item">
           <div className="ram-resident-card-item-label">Origin</div>
-          <div className="ram-resident-card-item-data">{resident.origin.name}</div>
+          <div className="ram-resident-card-item-data">
+            {resident.origin.name}
+          </div>
         </div>
       </div>
     </div>
